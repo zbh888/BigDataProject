@@ -20,8 +20,8 @@ Process the data, and it would seem like this: (for data.txt)
 
 This upload the file
 
-@datasci:~/Project$ hadoop fs -mkdir cs451-project
-@datasci:~/Project$ hadoop fs -put sample.txt cs451-project
+@datasci:\~/Project$ hadoop fs -mkdir cs451-project
+@datasci:\~/Project$ hadoop fs -put sample.txt cs451-project
 
 ### 2. Processing the data - A
 
