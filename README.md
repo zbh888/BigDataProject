@@ -18,7 +18,10 @@ Process the data, and it would seem like this: (for data.txt)
 (...,  ...)
 ```
 
-[This](https://cloud.ibm.com/docs/AnalyticsEngine?topic=AnalyticsEngine-upload-files-hdfs&locale=zh-TW) Shows how we can upload file to HDFS
+This upload the file
+
+@datasci:~/Project$ hadoop fs -mkdir cs451-project
+@datasci:~/Project$ hadoop fs -put sample.txt cs451-project
 
 ### 2. Processing the data - A
 
