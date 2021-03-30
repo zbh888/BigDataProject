@@ -24,6 +24,8 @@ This upload the file
 
 @datasci:\~/Project$ hadoop fs -put sample.txt cs451-project
 
+txt = sc.textFile('cs451-project/sample.txt')
+
 ### 2. Processing the data - A
 
 We can ignore keeping the time for our first version. So the data would look like this (No `NA`)
