@@ -1,5 +1,9 @@
 ## Distributed FNN training
 
+Note `GenNum.java` in this repo generates the correct format of input data
+
+Download and try running `java GenNum.java 20` gives 20 lines.
+
 ### usage
 
 Run `spark-submit --class ca.uwaterloo.cs451.project.Project target/assignments-1.0.jar --input project/project --output project_result`
