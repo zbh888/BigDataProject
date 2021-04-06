@@ -89,6 +89,15 @@ C
  ├─part-00000-47aa4567-842e-4d7c-a478-cdc2198f695a-c000.snappy.parquet
  
  └─part-00001-47aa4567-842e-4d7c-a478-cdc2198f695a-c000.snappy.parquet
+ 
+ 
+ # Reference
+ 
+ [Document](https://spark.apache.org/docs/latest/ml-classification-regression.html#multilayer-perceptron-classifier)
+ 
+ [Transform data](https://stackoverflow.com/questions/33844591/prepare-data-for-multilayerperceptronclassifier-in-scala)
+ 
+ [example](https://blog.csdn.net/zjsghww/article/details/84033060)
 
 
 
