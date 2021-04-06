@@ -46,7 +46,7 @@ projectvalidation     // Validation set -> 10% of the total data set
  
  It creates directories `A`, `B`, `C` under `bigdata2021/project_result`
  
- That is the result of three models tested on the testset. The structure of the dataframe is ` ("label", "date", "prediction")`
+ That is the result of three models tested on the testset. The structure of the dataframe is ` ("label", "date", "prediction") : (Int, String, Int)`
  
  Those three models are best performed on validation set among those total five models
  
