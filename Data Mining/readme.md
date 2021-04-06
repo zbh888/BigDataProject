@@ -98,6 +98,10 @@ C
  [Transform data](https://stackoverflow.com/questions/33844591/prepare-data-for-multilayerperceptronclassifier-in-scala)
  
  [example](https://blog.csdn.net/zjsghww/article/details/84033060)
+ 
+ [Intro](https://medium.com/@Sushil_Kumar/artificial-neural-network-with-spark-mllib-9474570239d8)
+ 
+ [Matrix](https://my.oschina.net/uchihamadara/blog/814017)
 
 
 
