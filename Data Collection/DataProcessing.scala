@@ -23,6 +23,7 @@ import org.apache.spark.SparkConf
 import org.rogach.scallop._
 import java.io._
 import scala.collection._
+import org.apache.spark.mllib.rdd.RDDFunctions._
 
 class DataProcessingConf(args: Seq[String]) extends ScallopConf(args) {
   mainOptions = Seq(input, output)
@@ -43,14 +44,14 @@ object DataProcessing {
 
     var size = 0
     val textFile = sc.textFile(args.input())
-    val result = textFile.map(p => (p.split(",")(0), p.split(",")(1))).collect().toList.sliding(18, 1)
+    val result = textFile.map(p => (p.split(",")(0), p.split(",")(1))).sliding(18, 1)
     .map(p => (if (p(0)._2 < p(17)._2) 1 else 0, p(0)._1,
                p(0)._2, p(1)._2, p(2)._2, p(3)._2, p(4)._2, p(5)._2, p(6)._2, p(7)._2, p(8)._2, p(9)._2,
                p(10)._2, p(11)._2, p(12)._2, p(13)._2, p(14)._2, p(15)._2, p(16)._2, p(17)._2))
-    .map(line => { (scala.util.Random.nextInt, line) }).toList.sortBy(_._1)
-    .map(p => {size += 1; p._2}).toList
-    println(result)
-    sc.parallelize(result, 1).saveAsTextFile(args.output() + "/result")
+    .map(line => { (scala.util.Random.nextInt, line) }).sortBy(_._1)
+    .map(p => {size += 1; p._2})
+    //println(result)
+    result.saveAsTextFile(args.output() + "/result")
     
     val testSize = (size * 0.1).floor
     val trainSize = (size * 0.16).ceil
