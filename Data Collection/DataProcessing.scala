@@ -42,61 +42,31 @@ object DataProcessing {
     val outputDir = new Path(args.output())
     FileSystem.get(sc.hadoopConfiguration).delete(outputDir, true)
 
-    var size = 0
     val textFile = sc.textFile(args.input())
     val result = textFile.map(p => (p.split(",")(0), p.split(",")(1))).sliding(18, 1)
-    .map(p => (if (p(0)._2 < p(17)._2) 1 else 0, p(0)._1,
-               p(0)._2, p(1)._2, p(2)._2, p(3)._2, p(4)._2, p(5)._2, p(6)._2, p(7)._2, p(8)._2, p(9)._2,
-               p(10)._2, p(11)._2, p(12)._2, p(13)._2, p(14)._2, p(15)._2, p(16)._2, p(17)._2))
-    .map(line => { (scala.util.Random.nextInt, line) }).sortBy(_._1)
-    .map(p => {size += 1; p._2})
-    //println(result)
-    result.saveAsTextFile(args.output() + "/result")
+    .map(p => {(scala.util.Random.nextInt,
+                (if (p(0)._2 < p(17)._2) 1 else 0, p(0)._1,
+                 p(0)._2, p(1)._2, p(2)._2, p(3)._2, p(4)._2, p(5)._2, p(6)._2, p(7)._2, p(8)._2, p(9)._2,
+                 p(10)._2, p(11)._2, p(12)._2, p(13)._2, p(14)._2, p(15)._2, p(16)._2, p(17)._2))
+              })
+    .sortByKey()
+    .map(p => {(scala.util.Random.nextInt(101), p._2)})
     
-    val testSize = (size * 0.1).floor
-    val trainSize = (size * 0.16).ceil
-    var counter = 0
-    var projecttest = List[(Int, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String)]()
-    var projecttrain1 = List[(Int, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String)]()
-    var projecttrain2 = List[(Int, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String)]()
-    var projecttrain3 = List[(Int, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String)]()
-    var projecttrain4 = List[(Int, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String)]()
-    var projecttrain5 = List[(Int, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String)]()
-    var projectvalidation = List[(Int, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String)]()
-    result.map(p =>
-      {
-        if (counter <= testSize) {
-          projecttest = projecttest :+ p
-        }
-        else if (counter <= testSize + trainSize) {
-          projecttrain1 = projecttrain1 :+ p
-        }
-        else if (counter <= testSize + 2 * trainSize) {
-          projecttrain2 = projecttrain2 :+ p
-        }
-        else if (counter <= testSize + 3 * trainSize) {
-          projecttrain3 = projecttrain3 :+ p
-        }
-        else if (counter <= testSize + 4 * trainSize) {
-          projecttrain4 = projecttrain4 :+ p
-        }
-        else if (counter <= testSize + 5 * trainSize) {
-          projecttrain5 = projecttrain5 :+ p
-        }
-        else {
-          projectvalidation = projectvalidation :+ p
-        }
-        counter += 1
-
-        p
-      }
-    )
-    sc.parallelize(projecttest, 1).saveAsTextFile(args.output() + "/projecttest")
-    sc.parallelize(projecttrain1, 1).saveAsTextFile(args.output() + "/projecttrain1")
-    sc.parallelize(projecttrain2, 1).saveAsTextFile(args.output() + "/projecttrain2")
-    sc.parallelize(projecttrain3, 1).saveAsTextFile(args.output() + "/projecttrain3")
-    sc.parallelize(projecttrain4, 1).saveAsTextFile(args.output() + "/projecttrain4")
-    sc.parallelize(projecttrain5, 1).saveAsTextFile(args.output() + "/projecttrain5")
-    sc.parallelize(projectvalidation, 1).saveAsTextFile(args.output() + "/projectvalidation")
+    var projecttest = result.filter(p => {p._1 <= 10}).map(p => p._2)
+    var projecttrain1 = result.filter(p => {p._1 > 10 && p._1 <= 26}).map(p => p._2)
+    var projecttrain2 = result.filter(p => {p._1 > 26 && p._1 <= 42}).map(p => p._2)
+    var projecttrain3 = result.filter(p => {p._1 > 42 && p._1 <= 58}).map(p => p._2)
+    var projecttrain4 = result.filter(p => {p._1 > 58 && p._1 <= 74}).map(p => p._2)
+    var projecttrain5 = result.filter(p => {p._1 > 74 && p._1 <= 90}).map(p => p._2)
+    var projectvalidation = result.filter(p => {p._1 > 90}).map(p => p._2)
+    
+    result.map(p => p._2).saveAsTextFile(args.output() + "/result")
+    projecttest.saveAsTextFile(args.output() + "/projecttest")
+    projecttrain1.saveAsTextFile(args.output() + "/projecttrain1")
+    projecttrain2.saveAsTextFile(args.output() + "/projecttrain2")
+    projecttrain3.saveAsTextFile(args.output() + "/projecttrain3")
+    projecttrain4.saveAsTextFile(args.output() + "/projecttrain4")
+    projecttrain5.saveAsTextFile(args.output() + "/projecttrain5")
+    projectvalidation.saveAsTextFile(args.output() + "/projectvalidation")
   }
 }
