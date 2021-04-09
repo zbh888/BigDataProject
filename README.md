@@ -6,7 +6,7 @@ hadoop fs -put `your data file name` cs451-projectInput
 
 ## Part 1 Data Collection
 
-input `cs451-projectInput/sample.txt`
+input `cs451-projectInput/your data file name`
 
 `spark-submit --class ca.uwaterloo.cs451.project.DataProcessing --deploy-mode client \
 --num-executors 4 --executor-cores 4 --executor-memory 24G --driver-memory 2g \
