@@ -1,8 +1,8 @@
 # BigDataProject - Predicting Bitcoin price
 
-We will finish the first simple version of this project (Not in real time)
+hadoop fs -mkdir cs451-projectInput
 
-The expectation date to hand in is 2021-4-7
+hadoop fs -put `your data file name` cs451-projectInput
 
 ## Part 1 Data Collection
 
