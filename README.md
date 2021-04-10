@@ -4,6 +4,8 @@ hadoop fs -mkdir cs451-projectInput
 
 hadoop fs -put `your data file name` cs451-projectInput
 
+# Stage 1
+
 ## Part 1 Data Collection
 
 input `cs451-projectInput/your data file name`
@@ -29,6 +31,14 @@ target/assignments-1.0.jar \
 target/assignments-1.0.jar \
 --input cs451-projectTrained \
 --output cs451-projectEvaluated`
+
+# Stage 2
+
+1. We will process the hourly Reddit data, and count how many times bitcoin appears
+
+2. Join the data with price data
+
+3. Use it as a 19-th parameter. (Easily done)
 
 
 # Notes
