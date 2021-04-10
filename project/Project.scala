@@ -53,6 +53,9 @@ object Project {
 
     // Train models
     // Model 1
+    println("Start to train 1st Model")
+    println("Start to train 1st Model")
+    println("Start to train 1st Model")
     val data1 = sc.textFile(input+"train1")
       .map(x => x.substring(1, x.length-1))
       .map(y => y.split(","))
@@ -63,6 +66,9 @@ object Project {
     val num1 = evaluator.evaluate(model1.transform(validation_df).select("prediction","label"))
 
     // Model 2
+    println("Start to train 2nd Model")
+    println("Start to train 2nd Model")
+    println("Start to train 2nd Model")
     val data2 = sc.textFile(input+"train2")
       .map(x => x.substring(1, x.length-1))
       .map(y => y.split(","))
@@ -73,6 +79,9 @@ object Project {
     val num2 = evaluator.evaluate(model2.transform(validation_df).select("prediction","label"))
 
     // Model 3
+    println("Start to train 3rd Model")
+    println("Start to train 3rd Model")
+    println("Start to train 3rd Model")
     val data3 = sc.textFile(input+"train3")
       .map(x => x.substring(1, x.length-1))
       .map(y => y.split(","))
@@ -83,6 +92,9 @@ object Project {
     val num3 = evaluator.evaluate(model3.transform(validation_df).select("prediction","label"))
 
     // Model 4
+    println("Start to train 4th Model")
+    println("Start to train 4th Model")
+    println("Start to train 4th Model")
     val data4 = sc.textFile(input+"train4")
       .map(x => x.substring(1, x.length-1))
       .map(y => y.split(","))
@@ -93,6 +105,9 @@ object Project {
     val num4 = evaluator.evaluate(model4.transform(validation_df).select("prediction","label"))
 
     // Model 5
+    println("Start to train 5th Model")
+    println("Start to train 5th Model")
+    println("Start to train 5th Model")
     val data5 = sc.textFile(input+"train5")
       .map(x => x.substring(1, x.length-1))
       .map(y => y.split(","))
