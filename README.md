@@ -1,43 +1,22 @@
-# BigDataProject - Predicting Bitcoin price
+# BigDataProject - Predicting Bitcoin price increase or decrease next minute in the long run
 
-hadoop fs -mkdir cs451-projectInput
+# Report
 
-hadoop fs -put `your data file name` cs451-projectInput
+https://youtu.be/_PTs7POnvI0
 
-# Stage 1
+# Result
 
-## Part 2 Data Mining
+Fail to predict, but we excluded some factor that may affect it. (I tend to believe it is random)
 
-`spark-submit --class ca.uwaterloo.cs451.project.Project --deploy-mode client \
---num-executors 4 --executor-cores 4 --executor-memory 24G --driver-memory 2g \
-target/assignments-1.0.jar \
---input cs451-projectProcessed/project \
---output cs451-projectTrained`
+# Notes in short
 
-## Part 3 Data Evaluation
+Language used: Spark, Python, R
 
-`spark-submit --class ca.uwaterloo.cs451.project.Evaluation --deploy-mode client \
---num-executors 4 --executor-cores 4 --executor-memory 24G --driver-memory 2g \
-target/assignments-1.0.jar \
---input cs451-projectTrained \
---output cs451-projectEvaluated`
+Source: Reddit database, and 1-minute price of bitcoin from 2015-10 to 2021-4
 
-# Stage 2
+At first, we find data like prices or some big data indicator and make some transformation, then apply artifitial neural network to train. 
 
-1. We will process the hourly Reddit data, and count how many times bitcoin appears
-
-2. Join the data with price data
-
-3. Use it as a 19-th parameter. (Easily done)
-
-
-# Notes
-
-We use MLlib in Spark for this project
-
-At first, we find data, apply artifitial neural network to train. 
-
-Then, apply data visualization to see how well the model fits.
+Lastly, apply confusion matrix to see how well the model fits.
 
 # Reference
  
